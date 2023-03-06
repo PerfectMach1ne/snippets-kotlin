@@ -102,6 +102,8 @@ fun main() { // I love to death that functions in Kotlin are all defined by just
     var lengthA: Int = if (lastName != null) lastName.length else 0
 
     var lengthB: Int = lastName?.length ?: 0
+
+    SwingTest()
 }
 
 class Jeff(var name: String)
