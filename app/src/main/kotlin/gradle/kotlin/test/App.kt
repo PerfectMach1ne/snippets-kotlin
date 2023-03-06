@@ -103,7 +103,85 @@ fun main() { // I love to death that functions in Kotlin are all defined by just
 
     var lengthB: Int = lastName?.length ?: 0
 
-    SwingTest()
+//    SwingTest()
+
+    var x = sayHi()
+    println(x)
+    sayHi()
+    println(sayHi2())
+    function()
+    // Single Expression Function
+    fun sayHelo() = println("Helo!!")
+    sayHelo()
+
+    val age = 23
+
+    // as long as this doesn't go belong margin, single-line functions are preferable
+    // THey take up much less space than expanding this across like 7 lines.
+    fun doWork() = if (age != 21) println("Your age is not funny.") else println("tweny wan")
+
+    doWork()
+
+    // Function overloading with vararg - variable number of arguments
+    fun printBookInfo(title: String, vararg authors: String) {
+        print("$title, by ")
+        // lambda expression for looping through authors
+        authors.forEach{ print("$it ") } // it + ' '
+    }
+
+    printBookInfo("Pathway to Eden", "@starflower", "@earthrise", "@hollowmoon")
+
+//    fun printThingy(stringy: String) {
+//        print("Stringy: $stringy")
+//    }
+
+//    fun printThingy(stringy: String, numby: Int) {
+//        print("Stringy: $stringy, numby: $numby")
+//    }
+
+//    fun printThingy(stringy: String, numby: Int, favDoubleVariable: Double) {
+//        print("Stringy: $stringy, numby: $numby, favourite double variable: $favDoubleVariable")
+//    }
+
+    fun printThingy(stringy: String, numby: Int = 57, favDoubleVariable: Double = 0.57) {
+        print("Stringy: $stringy, numby: $numby, favourite double variable: $favDoubleVariable")
+    }
+
+    printThingy("brah.mp4")
+
+    var user = User()
+    user.firstName = "Chloe"
+    user.lastName = "Iforgotherna no wait it was Fortuna"
+
+    var friend = User()
+    friend.firstName = "Chloe"
+    friend.lastName = "Fortuna"
+    friend.printFullName()
+    friend.printWithPrefix("poggers")
+
+    Button()
 }
 
 class Jeff(var name: String)
+
+// By default, all functions that don't have a return type, return Unit
+
+fun sayHi() {
+    println("hiiii :3")
+}
+
+fun sayHi2(): String {
+    return "hiiii c:"
+}
+
+fun function() {
+    println("Freddie: eeeooo")
+
+//    nested() <- error! it's not been declared yet!
+
+    fun nested() {
+        println("The crowd: eeeee oooo")
+    }
+
+    nested()
+}

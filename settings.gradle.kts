@@ -8,4 +8,4 @@
  */
 
 rootProject.name = "gradle-kotlin-test-2"
-include("app")
+include("app") // Include the code & build logic from the subproject folder 'app'
