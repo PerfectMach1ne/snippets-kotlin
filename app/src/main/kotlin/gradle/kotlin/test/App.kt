@@ -10,6 +10,35 @@ class App {
         }
 }
 
-fun main() {
+fun main() { // I love to death that functions in Kotlin are all defined by just "fun". fun!! FUN!!!!!!!!
     println(App().greeting)
+    // val - value, cannot be changed
+    // var - variable, can be changed
+    var message: String = """
+        Heloooo
+        woooorld
+    """.trimIndent() // Removes the indent and newline taken from the code
+    // Alternatively, use .replaceIndent("#")
+    println(message)
+    message = """
+        Heloooo
+        woooorld
+    """.replaceIndent("#.")
+    println(message)
+    /* .trimIndent() can also be replaced with something like .trimMargin(),
+        but then we'll have to pass a string of specific characters in the method and
+        then write them at the start of each new line, like below. Default char is '|'
+    */
+    message = """
+        >>>Heloooo
+        >>>woooorld
+    """.trimMargin(">>>")
+    println(message)
+    val bruh = "123"
+    print("helo world: ${App().greeting} and \"123\": $bruh which is ${bruh.length} characters long\n")
+//    var isBlank: Boolean = false  this gives a warning that "Boolean" is reduntant and stops a push just to tell it.
+    var isBlank = false
+    println(isBlank.not())
+    isBlank = "".isBlank()
+    println(isBlank)
 }
