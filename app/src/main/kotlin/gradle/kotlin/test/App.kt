@@ -41,4 +41,67 @@ fun main() { // I love to death that functions in Kotlin are all defined by just
     println(isBlank.not())
     isBlank = "".isBlank()
     println(isBlank)
+
+    val yourBasedness = "cringe"
+    val myBasedness = "cringe (based)"
+
+    val yourpH = 0f
+    val mypH = 14.1f
+
+    if ( (yourBasedness != myBasedness) && (yourpH != mypH) ) {
+        println("both checked statements r true")
+    }
+    // || is or
+
+    var beh1 = "jeff"
+    var beh2 = "NOT jeff"
+
+    println("${beh1 == beh2} ${beh1.equals(beh2)} ${beh1 === beh2}")
+
+    beh2 = "jeff"
+
+    println("${beh1 == beh2} ${beh1.equals(beh2)} ${beh1 === beh2}")
+    // true true true
+    // Quoting video, "a Kotlin """caveat""" ": numbers, chars and bools are all primitive types in Kotlin.
+
+    var beh3 = Jeff("jeff")
+    var beh4 = Jeff("NOT jeff")
+
+    println("${beh3 == beh4} ${beh3.equals(beh4)} ${beh3 === beh4}")
+    println("${beh3.name == beh4.name} ${beh3.name === beh4.name}")
+
+    beh4 = Jeff("jeff")
+
+    println("${beh3 == beh4} ${beh3.equals(beh4)} ${beh3 === beh4}")
+    println("${beh3.name == beh4.name} ${beh3.name === beh4.name}")
+
+    var weh1 = Jeff("jeff")
+    var weh2 = Jeff("jeff")
+
+    println("${weh1 == weh2} ${weh1 === weh2}")
+
+    /*** null stuff ***/
+    var name: String = "Jeff" // not nullable
+    var name2: String? = "Jeffuel"
+    name2 = null // And thus Jeffuel is no more.
+    var aJeff: Jeff? = Jeff("not jeff")
+    aJeff = null
+
+    // Checking length of a nullable reference properly - safe call
+    val length2 = name2?.length // if it's null, make it null, otherwise give it an integer length
+    println(length2) // ...or:
+    val length3 = if (name2 != null) name2.length else 0
+    println(length3)
+    val length4 = name2?.substring(0, 2)?.length
+    var name3: String? = "jeffjeffjeffjeffjeffjeff"
+    val length5 = name2?.substring(0,5)?.drop(2)?.substring(2,3)?.length
+    print(length5)
+
+    var lastName: String? = "Riamu"
+
+    var lengthA: Int = if (lastName != null) lastName.length else 0
+
+    var lengthB: Int = lastName?.length ?: 0
 }
+
+class Jeff(var name: String)
