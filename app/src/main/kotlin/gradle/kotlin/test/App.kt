@@ -159,7 +159,47 @@ fun main() { // I love to death that functions in Kotlin are all defined by just
     friend.printFullName()
     friend.printWithPrefix("poggers")
 
-    Button()
+//    Button()
+    
+    // Multiple class constructors
+    var user2 = TheCoolerUser("guy", "fieri")
+    // Uses primary constructor
+    var user3 = TheCoolerUser(firstName="gal", lastName="fierest", isPlatinum=true)
+    // Calls into third constructor, then into second, then into root constructor
+    var user4 = TheCoolerUser("gay") // me irl
+    user2.printFullName()
+    user3.printFullName()
+    user4.printFullName()
+
+    var user5 = Userer("Person", "Personska")
+    println(user5.fullName)
+    user5.fullName = "Jeff"
+    println(user5.fullName)
+
+    ColorLabels()
+
+}
+
+class TheCoolerUser(var firstName: String, var lastName: String, var isPlatinum: Boolean) {
+    constructor(firstName: String, lastName: String) : this(firstName, lastName, false) {
+        println("2nd")
+    }
+
+    constructor(firstName: String) : this(firstName, "Unknown") {
+        println("3rd")
+    }
+
+    fun printFullName() {
+        println("$firstName $lastName")
+    }
+
+    fun printWithPrefix(prefix: String) {
+        print("$prefix $lastName")
+    }
+
+    fun updateName(newName: String) {
+        firstName = newName
+    }
 }
 
 class Jeff(var name: String)

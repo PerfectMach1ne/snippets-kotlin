@@ -4,7 +4,7 @@ package gradle.kotlin.test
 import java.awt.EventQueue
 import javax.swing.JFrame
 class SwingTest {
-    init {
+    init { // Initializer blocks, called right after the constructor was called
         EventQueue.invokeLater(::createAndShowGUI)
     }
 
