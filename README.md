@@ -6,6 +6,8 @@ Taming Gradle &amp; Kotlin.
 
 Extra lore there 👉👉👉👉👉 [![Building Java & JVM projects](https://img.shields.io/badge/-Java%20&%20JVM%20projects-%2302303A?style=for-the-badge&logo=gradle&logoColor=white)](https://docs.gradle.org/current/userguide/building_java_projects.html)
 
+The tutorial I am sourcing the fundamental Kotlin wisdom from : https://www.youtube.com/watch?v=wuiT4T_LJQo
+
 ### Create a Kotlin project /w Gradle
 
 #### `cd /D <project path>`
