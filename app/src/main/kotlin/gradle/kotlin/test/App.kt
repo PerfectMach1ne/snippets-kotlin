@@ -56,6 +56,7 @@ fun main() { // I love to death that functions in Kotlin are all defined by just
     var beh1 = "jeff"
     var beh2 = "NOT jeff"
 
+    // structural equality; ; referential equality
     println("${beh1 == beh2} ${beh1.equals(beh2)} ${beh1 === beh2}")
 
     beh2 = "jeff"
@@ -93,15 +94,16 @@ fun main() { // I love to death that functions in Kotlin are all defined by just
     val length3 = if (name2 != null) name2.length else 0
     println(length3)
     val length4 = name2?.substring(0, 2)?.length
+    println(length4)
     var name3: String? = "jeffjeffjeffjeffjeffjeff"
     val length5 = name2?.substring(0,5)?.drop(2)?.substring(2,3)?.length
     print(length5)
 
-    var lastName: String? = "Riamu"
+    var _lastName: String? = "Riamu"
 
-    var lengthA: Int = if (lastName != null) lastName.length else 0
+    var lengthA: Int = if (_lastName != null) _lastName.length else 0
 
-    var lengthB: Int = lastName?.length ?: 0
+    var lengthB: Int = _lastName?.length ?: 0
 
 //    SwingTest()
 
@@ -176,8 +178,106 @@ fun main() { // I love to death that functions in Kotlin are all defined by just
     user5.fullName = "Jeff"
     println(user5.fullName)
 
-    ColorLabels()
+//    ColorLabels()
 
+    // ***************************************** 02/05/2023 *********************************************
+    class Person(var name: String)
+
+    var a = Person("donn")
+    var b = Person("donn")
+
+    println(a === b) // -> false
+    println(a !== b); // -> true
+    // different objects stored in different memory. old news, but good to refresh this knowledge <3
+
+    // ******* Companion object
+    // < check Userium.kt >
+    // had to move it there, or else: "Modifier 'companion' is not applicable inside 'local class'"
+
+    var userium = Userium("sus", "amogus")
+    println(userium.fullName())
+    println(userium.toString())
+
+    // like a factory for creating objects
+    val user6 = Userium.createUser("boo", "B")
+    println(user6)
+
+    val users1 = Userium.createUsers(7)
+    println(users1)
+    // collection helped method to make this prettier
+    users1.forEach { println(it) }
+
+    // we take from the companion object list that was modified by users1 call to createUsers
+    val users2 = Userium.users
+    users2.forEach { println(it) }
+
+    // ******* How to create a Singleton
+
+//    val x = FavouriteFood().instance()
+    println(FavouriteFood.name)
+    FavouriteFood.name = "Watermelon"
+    println(FavouriteFood.name)
+
+    fun doStuff() {
+        FavouriteFood.name = "Chicken"
+        FavouriteFood.ingredients.clear()
+    }
+
+    doStuff()
+    println(FavouriteFood.name)
+    // singleton -> 1 instance only
+
+    FavouriteFood.ingredients.add("Salt")
+    println(FavouriteFood.ingredients.first())
+    println(FavouriteFood.numberOfIngredients())
+    doStuff()
+    println(FavouriteFood.ingredients.firstOrNull())
+    println(FavouriteFood.numberOfIngredients())
+    println(FavouriteFood == FavouriteFood)
+
+    // ******* Declaring constants
+
+    // back to < Userium.kt >
+    val useru = Userium("Sapph", "Gay")
+//    println(useru.MAX_AGE) // private
+//    println(useru.MAX_AGE_2) // it's not in the instance
+    println(Userium.MAX_AGE_2) // now *this* works
+    // people like to do this:
+    // < Constants.kt >
+    println(Constants.MAX_AGE - Constants.MIN_AGE)
+    // they can also be defined at the top level, above this main() function and App class
+    Constants.ABC.split("").forEach { println(it) }
+
+    // ******* The lateinit modifier
+    // < LateInitUser.kt >
+
+    val liu = LateInitUser("Donn", "Felker")
+//    println(liu.toString())
+    // Kotlin error:
+    // Exception in thread "main" kotlin.UninitializedPropertyAccessException: You fucking lied to me
+    liu.favouriteCity = "Minecraf"
+    println(liu.toString())
+
+    // ******* How to Nest Classes
+    // ******* Inner classes
+
+    // < Vehicle.kt >
+    val myCar = Vehicle()
+    myCar.brand = "Fiat"
+    myCar.info()
+
+    // after Inner classes section:
+    // Constructor of inner class SteeringWheel can be called only with receiver of containing class
+//    val sw = Vehicle.SteeringWheel()
+    val sw = myCar.SteeringWheel()
+    sw.info()
+
+    var transmission = Vehicle.Transmission()
+    transmission.shift()
+    transmission.shift()
+
+    // since Transmission is still a plain nested class, we cannot do that:
+//    myCar.Transmission()
 }
 
 class TheCoolerUser(var firstName: String, var lastName: String, var isPlatinum: Boolean) {
