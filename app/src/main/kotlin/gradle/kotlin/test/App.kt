@@ -278,6 +278,114 @@ fun main() { // I love to death that functions in Kotlin are all defined by just
 
     // since Transmission is still a plain nested class, we cannot do that:
 //    myCar.Transmission()
+    print(AccountType.SILVER)
+
+    val accountTypeFromAPI = "gold"
+    val accountType = AccountType.valueOf(accountTypeFromAPI.uppercase())
+    // toUpperCase(): String' is deprecated. Use uppercase() instead.
+
+    val eu = UserEnum("Don", "Quixote", AccountType.GOLD)
+    print(eu)
+
+    println(EnumDefaultConstructor.GOLD)
+    println(EnumDefaultConstructor.PLATINUM)
+
+    val value = EnumDefaultConstructor.valueOf("Platinum".uppercase())
+    print(value)
+
+    val fromApi = "plaTinuM"
+    val accType = AccountType.valueOf(fromApi.uppercase())
+    println(accType.calculateDiscountPercent())
+
+    for (accyTypey in AccountType.values()) {
+        println(accyTypey)
+    }
+
+    AccountType.values().forEach { println(it) }
+
+    val accyTypeyeyeye = AccountType.getAccountTypeByName("gold")
+    println(accyTypeyeyeye)
+
+    val donqui = UserEnum("Don", "Quixote")
+
+    when (user.firstName) {
+        "Don" -> {
+            println("DONQUI!!!!")
+        }
+        else -> {
+            println("This ain't Don bruh")
+        }
+    }
+
+    when (donqui.firstName) {
+        "Don" -> {
+            println("don quaso")
+        }
+        else -> {
+            println("where don")
+        }
+    }
+
+    val accyType1 = AccountType.PLATINUM
+
+    val message1 = when (accyType1) {
+        AccountType.BRONZE -> {
+            "Bronze Member Access Allowed"
+        }
+        AccountType.SILVER -> {
+            "Silver Member Access Allowed"
+        }
+        AccountType.GOLD -> {
+            "Gold Member Access Allowed"
+        }
+        AccountType.PLATINUM -> {
+            "Platinum Member Access Allowed"
+        }
+        else -> "Regular Member Access Allowed"
+    }
+
+    println(message1)
+
+    data class Personer(val firstName: String, val lastName: String, val age: Int)
+
+    val p1 = Personer("bingus","theuhh", 57)
+    for (i in 1..3) {
+        println("this is how you bsic loop, anyway")
+    }
+    println(p1.component1())
+    println(p1.component2())
+    println(p1.component3())
+
+    val (firstName, lastName, age_) = p1
+    println("$firstName $lastName $age_")
+}
+
+enum class AccountType {
+    BRONZE {
+        override fun calculateDiscountPercent() = 5
+    },
+    SILVER {
+        override fun calculateDiscountPercent() = 10
+    },
+    GOLD {
+        override fun calculateDiscountPercent() = 15
+    },
+    PLATINUM {
+        override fun calculateDiscountPercent() = 57
+    };
+
+    abstract fun calculateDiscountPercent(): Int;
+
+    companion object {
+        fun getAccountTypeByName(name: String) = valueOf(name.uppercase())
+    }
+}
+
+enum class EnumDefaultConstructor(val discountPercent: Int /*= 10*/) {
+    BRONZE(5),
+    SILVER(10),
+    GOLD(20),
+    PLATINUM(35)
 }
 
 class TheCoolerUser(var firstName: String, var lastName: String, var isPlatinum: Boolean) {
