@@ -358,6 +358,18 @@ fun main() { // I love to death that functions in Kotlin are all defined by just
 
     val (firstName, lastName, age_) = p1
     println("$firstName $lastName $age_")
+
+    val sibling = p1.copy(firstName = "Sam", age = 44)
+    println(sibling)
+
+    val pair = Pair("foo", "Beh")
+    println(pair)
+    println(pair.first)
+    println(pair.second)
+    val triple = Triple(5, 7, "nine")
+    println("${triple.first} ${triple.second} ${triple.third}")
+    var pairOtherSyntax = "foo" to "bar"
+    println(pairOtherSyntax)
 }
 
 enum class AccountType {
