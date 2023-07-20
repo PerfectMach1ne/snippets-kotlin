@@ -370,7 +370,55 @@ fun main() { // I love to death that functions in Kotlin are all defined by just
     println("${triple.first} ${triple.second} ${triple.third}")
     var pairOtherSyntax = "foo" to "bar"
     println(pairOtherSyntax)
+
+    val v = Vehicle2("Red");
+
+    v.info()
+//    println(v.axles)
+    println(v)
+
+    var button = Button_()
+    button.clickListener = NotSoAnonymousListener()
+    button.click()
+    button.clickListener = object: OnClickListener {
+        override fun onClick() {
+            println("and so it hath been clicced.")
+        }
+    }
+    button.click()
+    button.setMyListener(object: OnClickListener {
+        override fun onClick() {
+            println("buton cliced, mefod fri")
+        }
+    })
+    button.click()
 }
+
+class NotSoAnonymousListener : OnClickListener {
+    override fun onClick() {
+        println("beh")
+    }
+}
+
+interface OnClickListener {
+    fun onClick()
+}
+
+open abstract class View {
+    lateinit var clickListener: OnClickListener
+
+    fun setMyListener(clickListener: OnClickListener) {
+        this.clickListener = clickListener
+    }
+
+    fun click() {
+        clickListener.onClick()
+    }
+}
+
+class Button_: View()
+class Image : View()
+class Map : View()
 
 enum class AccountType {
     BRONZE {
